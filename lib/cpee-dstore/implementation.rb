@@ -16,7 +16,6 @@
 # along with CPEE-DSTORE (file LICENSE in the main directory). If not, see
 # <http://www.gnu.org/licenses/>.
 
-require 'rubygems'
 require 'mimemagic'
 require 'riddl/server'
 require 'fileutils'

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name             = "cpee-dstore"
-  s.version          = "1.0.0"
+  s.version          = "1.0.1"
   s.platform         = Gem::Platform::RUBY
   s.license          = "LGPL-3.0-or-later"
   s.summary          = "Generic document store for the cloud process execution engine (cpee.org)"
@@ -21,4 +21,5 @@ Gem::Specification.new do |s|
   s.homepage         = 'http://cpee.org/'
 
   s.add_runtime_dependency 'riddl', '~> 1.0'
+  s.add_runtime_dependency 'mimemagic', '~>0'
 end
