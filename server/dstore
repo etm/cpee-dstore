@@ -1,0 +1,40 @@
+#!/usr/bin/ruby
+#
+# This file is part of CPEE-DSTORE.
+#
+# CPEE-DSTORE is free software: you can redistribute it and/or modify it
+# under the terms of the GNU Lesser General Public License as published by the
+# Free Software Foundation, either version 3 of the License, or (at your
+# option) any later version.
+#
+# CPEE-DSTORE is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with CPEE-DSTORE (file LICENSE in the main directory).  If not, see
+# <http://www.gnu.org/licenses/>.
+
+if File.exist?(File.join(__dir__,'..','lib','cpee-dstore','implementation.rb'))
+  require_relative File.join(__dir__,'..','lib','cpee-dstore','implementation')
+elsif File.exist?(File.join(Dir.home,'Projects','cpee-dstore','lib','cpee-dstore','implementation.rb'))
+  require_relative File.join(Dir.home, 'Projects','cpee-dstore','lib','cpee-dstore','implementation')
+else
+  require 'cpee-dstore/implementation'
+end
+
+options = {
+  :host => 'localhost',
+  :port => 9304,
+  :secure => false
+}
+
+Riddl::Server.new(CPEE::DStore::SERVER, options) do
+  accessible_description true
+  cross_site_xhr true
+
+  @riddl_opts[:data_dir] ||= File.join(__dir__,'data')
+
+  use CPEE::DStore::implementation(@riddl_opts)
+end.loop!
