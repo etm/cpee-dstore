@@ -44,4 +44,3 @@ or on the command line:
 ```
 ./dstore -o data_dir=/home/mangler/Projects/cpee-resources/data -v start
 ```
-# cpee-dstore
