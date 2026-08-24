@@ -17,15 +17,26 @@
 -->
 
 <description xmlns="http://riddl.org/ns/description/1.0" xmlns:ann="http://riddl.org/ns/annotation/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
-  <message name="file">
+  <message name="ifile">
+    <optional>
+      <parameter name="append" type="string"/>
+    </optional>
+    <parameter name="file" mimetype="*"/>
+  </message>
+  <message name="rfile">
+    <optional>
+      <parameter name="tail" type="integer"/>
+    </optional>
+  </message>
+  <message name="ofile">
     <parameter name="file" mimetype="*"/>
   </message>
 
   <resource>
     <resource relative="[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}">
       <resource relative='[a-z_][a-zA-Z0-9_]*'>
-        <get out="file"/>
-        <put in="file"/>
+        <get in="rfile" out="ofile"/>
+        <put in="ifile"/>
       </resource>
     </resource>
   </resource>
