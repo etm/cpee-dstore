@@ -90,6 +90,20 @@ module CPEE
       end
     end #}}}
 
+    class DoDel < Riddl::Implementation #{{{
+      def response
+        file = File.join(@a[0],@r[-2],@r[-1])
+        meta = file + '.mimetype'
+        if File.exist?(file) && File.exist?(meta)
+          File.unlink(file)
+          File.unlink(meta)
+        else
+          @status = 404
+          nil
+        end
+      end
+    end #}}}
+
     def self::implementation(opts)
       opts[:data_dir] ||= File.expand_path(File.join(__dir__,'data'))
 
@@ -99,6 +113,7 @@ module CPEE
             on resource '[a-z_][a-zA-Z0-9_]*' do
               run DoGet, opts[:data_dir] if get 'rfile'
               run DoPut, opts[:data_dir] if put 'ifile'
+              run DoDel, opts[:data_dir] if delete
             end
           end
         end

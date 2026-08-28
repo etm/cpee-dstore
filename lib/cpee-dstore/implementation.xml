@@ -37,6 +37,7 @@
       <resource relative='[a-z_][a-zA-Z0-9_]*'>
         <get in="rfile" out="ofile"/>
         <put in="ifile"/>
+        <delete/>
       </resource>
     </resource>
   </resource>
